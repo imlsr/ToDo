@@ -1,2 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 
-ejs
+<head>
+  <meta charset="utf-8">
+  <title>To Do List</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <div class="box" id="heading">
+    <h1>Today is <%= kindofday%> </h1>
+  </div>
+
+  <div class="box">
+    <% for(var i =0;i<newtask.length;i++){%>
+    <div class="item">
+      <input type="checkbox" name="" value="">
+      <p> <%= newtask[i] %></p>
+    </div>
+    <% } %>
+
+
+    <form class="" action="/" method="post">
+      <input type="text" name="newitem" placeholder="New task" autocomplete="off">
+      <button type="submit" name="button">+</button>
+    </form>
+
+  </div>
+
+
+
+
+
+
+</body>
+
+</html>
