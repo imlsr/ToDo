@@ -1,7 +1,7 @@
 # ToDo
 A SimpleTo-Do List app made using EJS
 
-Run @port3000 Locally:
+Run at localhost:3000 :
 
 `
 node app.js
