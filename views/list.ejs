@@ -10,7 +10,7 @@
 <body>
 
   <div class="box" id="heading">
-    <h1>Today is <%= kindofday%> </h1>
+    <h1><%= listtitle%> </h1>
   </div>
 
   <div class="box">
@@ -24,7 +24,7 @@
 
     <form class="" action="/" method="post">
       <input type="text" name="newitem" placeholder="New task" autocomplete="off">
-      <button type="submit" name="button">+</button>
+      <button type="submit" name="list" value=<%=listtitle%>>+</button>
     </form>
 
   </div>
