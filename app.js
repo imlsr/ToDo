@@ -4,8 +4,7 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-var items = [];
-var work = [];
+
 
 app.set("view engine", "ejs");
 app.use(bodyparser.urlencoded({extended:true}));
@@ -34,16 +33,6 @@ const item3 = new Item({
 
 const defaultitems  = [item1,item2,item3];
 
- Item.insertMany(defaultitems , function(err){
-   if(err){
-     console.log(err);
-   }else{
-     console.log("success");
-   }
- })
-
-
-
 
 
 
@@ -62,29 +51,48 @@ app.get("/", function(req, res){
   let day = today.toLocaleDateString("en-US",options);
 
   Item.find({},function(err, foundItems){
+
+    if(foundItems.length === 0){
+      Item.insertMany(defaultitems , function(err){
+        if(err){
+          console.log(err);
+        }else{
+          console.log("success");
+          }
+        });
+        res.redirect("/");
+      }else{
     res.render("list",{listtitle:day, newtask:foundItems});
-  })
-
-
+  }
+});
 
 });
 
 
 
 app.post("/", function(req,res){
-  let task = req.body.newitem;
+  const itemname = req.body.newitem;
+
+  const item = new Item({
+    name : itemname
+  })
+
+  item.save();
+
+  res.redirect("/")
 
 
-  if(req.body.list === "work"){
 
-    work.push(task);
-    res.redirect("/work");
-
-  }else{
-    items.push(task);
-    res.redirect("/");
-
-  }
+  // if(req.body.list === "work"){
+  //
+  //   work.push(task);
+  //   res.redirect("/work");
+  //
+  // }else{
+  //   items.push(task);
+  //   res.redirect("/");
+  //
+  // }
 
 
 
