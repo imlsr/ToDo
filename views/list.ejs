@@ -15,11 +15,16 @@
 
   <div class="box">
 
+    <form class="" action="/delete" method="post">
+
   <%  newtask.forEach(function(item){ %>
     <div class="item">
-      <input type="checkbox" name="" value="">
+      <input type="checkbox" name = "checkbox" value = "<%= item._id%>" onChange="this.form.submit()">
       <p> <%= item.name %></p>
     </div>
+
+  </form>
+
   <% }) %>
 
 
