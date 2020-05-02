@@ -12,7 +12,7 @@ app.use(bodyparser.urlencoded({extended:true}));
 app.use(express.static("public"));
 
 
-mongoose.connect("mongodb://localhost:27017/todolist",{useNewUrlParser :true});
+mongoose.connect("mongodb://localhost:27017/todolistDB", {useNewUrlParser :true});
 
 const itemsSchema = {
   name:String
@@ -20,7 +20,27 @@ const itemsSchema = {
 
 const Item = mongoose.model("Item",itemsSchema);
 
+const item1 = new Item({
+  name : "Welcome"
+});
 
+const item2 = new Item({
+  name : "To"
+});
+
+const item3 = new Item({
+  name : "Likith"
+});
+
+const defaultitems  = [item1,item2,item3];
+
+ Item.insertMany(defaultitems , function(err){
+   if(err){
+     console.log(err);
+   }else{
+     console.log("success");
+   }
+ })
 
 
 
@@ -28,6 +48,8 @@ const Item = mongoose.model("Item",itemsSchema);
 
 
 app.get("/", function(req, res){
+
+
   let today = new Date();
 
   let options = {
@@ -38,7 +60,12 @@ app.get("/", function(req, res){
   };
 
   let day = today.toLocaleDateString("en-US",options);
-  res.render("list",{listtitle:day, newtask:items});
+
+  Item.find({},function(err, foundItems){
+    res.render("list",{listtitle:day, newtask:foundItems});
+  })
+
+
 
 });
 

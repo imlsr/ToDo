@@ -14,12 +14,14 @@
   </div>
 
   <div class="box">
-    <% for(var i =0;i<newtask.length;i++){%>
+
+  <%  newtask.forEach(function(item){ %>
     <div class="item">
       <input type="checkbox" name="" value="">
-      <p> <%= newtask[i] %></p>
+      <p> <%= item.name %></p>
     </div>
-    <% } %>
+  <% }) %>
+
 
 
     <form class="" action="/" method="post">
