@@ -80,23 +80,25 @@ app.get("/", function(req, res){
 app.get("/:customlistname",function(req,res){
   const customlistname = req.params.customlistname;
 
-  List.findOne({name:customlistname},function(err,res){
+  List.findOne({name:customlistname},function(err,foundlist){
     if(!err){
-      if(!res){
+      if(!foundlist){
         const list = new List({
             name:customlistname,
             items: defaultitems
           });
           list.save();
+          res.redirect("/"+ customlistname);
       }else{
 
-        res.render("list",{listtitle:day, newtask:foundItems})
+        res.render("list",{listtitle:foundlist.name, newtask:foundlist.items})
 
       }
 
     }
   });
 
+});
 
 
 app.post("/", function(req,res){
