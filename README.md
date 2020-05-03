@@ -2,27 +2,11 @@
 A SimpleTo-Do List app made using EJS ,Express and MongoDB
 
 
-Run MongoDB server:
-```
-mongod
-```
+Check it out:
 
-Run at localhost:3000 :
-
-``` 
-node app.js 
-```
+[To-Do App](likithtodo.herokuapp.com)
 
 For Custom List:
 ``` 
- localhost:3000/listname  
+ likithtodo.herokuapp.com/any-list-name
 ```
-
-*Mongo Shell Usage*:
-
-View all your lists at once:
-```
-use todolistDB
-db.lists.find()
-```
-
